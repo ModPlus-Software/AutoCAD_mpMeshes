@@ -288,7 +288,7 @@
             }
             /////////////////////////////////////////////////
             // Записываем тип сетки в первое текстовое поле результата
-            TbxC.Text = e.AddedItems[0] + "C";
+            TbxC.Text = $"{e.AddedItems[0]}C";
         }
 
         // Выбор значения "Рулонная"
@@ -296,14 +296,14 @@
         {
             if (CbFirstMeshType.SelectedItem.Equals("4"))
             {
-                TbxC.Text = TbxC.Text + "р";
+                TbxC.Text = $"{TbxC.Text}р";
                 _maxLengthLimit = GetMaxLength(CbFirstLongitudinal.SelectedItem.ToString());
                 FirstLengthLimit.Text = ModPlusAPI.Language.GetItem(LangItem, "h40");
                 LengthChange();
             }
             else if (CbFirstMeshType.SelectedItem.Equals("5"))
             {
-                TbxC.Text = TbxC.Text + "р";
+                TbxC.Text = $"{TbxC.Text}р";
                 _maxLengthLimit = GetMaxLength(CbFirstLongitudinal.SelectedItem.ToString());
                 FirstLengthLimit.Text = ModPlusAPI.Language.GetItem(LangItem, "h41");
                 LengthChange();
@@ -349,7 +349,8 @@
                 else
                 {
                     TbMessage.Text = _helpFunc.Message(0, string.Empty);
-                    TbFirstb.Text = (int.Parse(((TextBox)sender).Text) / 10).ToString(CultureInfo.InvariantCulture) + "x";
+                    TbFirstb.Text =
+                        $"{(int.Parse(((TextBox)sender).Text) / 10).ToString(CultureInfo.InvariantCulture)}x";
                 }
 
                 // Доборный шаг
@@ -576,7 +577,7 @@
             }
             else
             {
-                TbFirstdStep.Text = "-" + e.AddedItems[0];
+                TbFirstdStep.Text = $"-{e.AddedItems[0]}";
             }
 
             // Доборный шаг
@@ -604,7 +605,7 @@
             }
             else
             {
-                TbFirstdOneStep.Text = "-" + e.AddedItems[0];
+                TbFirstdOneStep.Text = $"-{e.AddedItems[0]}";
             }
 
             // Доборный шаг
@@ -851,7 +852,7 @@
                     TbFirstaOne.Text = a1;
                     if (!string.IsNullOrEmpty(a2))
                     {
-                        TbFirstaTwo.Text = "+" + a2;
+                        TbFirstaTwo.Text = $"+{a2}";
                     }
 
                     TbFirsta.Text = TbFirstTransverseOutput.Text;
@@ -883,7 +884,7 @@
                 else
                 {
                     TbFirstaOne.Text = TbFirstLongitudinalOutput.Text;
-                    TbFirstaTwo.Text = "+" + TbFirstLongitudinalOutputTwo.Text;
+                    TbFirstaTwo.Text = $"+{TbFirstLongitudinalOutputTwo.Text}";
                     TbFirsta.Text = a;
                 }
             }
@@ -899,7 +900,7 @@
                 else
                 {
                     TbFirstaOne.Text = TbFirstLongitudinalOutput.Text;
-                    TbFirstaTwo.Text = "+" + TbFirstLongitudinalOutputTwo.Text;
+                    TbFirstaTwo.Text = $"+{TbFirstLongitudinalOutputTwo.Text}";
                     TbFirsta.Text = a;
                 }
             }
@@ -921,7 +922,7 @@
                 var addstep = b - (snum * s) - a - a;
                 if (Math.Abs(addstep) > _ep)
                 {
-                    TbFirstdAddStep.Text = "(" + addstep.ToString(CultureInfo.InvariantCulture) + ")";
+                    TbFirstdAddStep.Text = $"({addstep.ToString(CultureInfo.InvariantCulture)})";
                 }
                 else
                 {
@@ -966,7 +967,7 @@
 
                 if (Math.Abs(addstep) > _ep)
                 {
-                    TbFirstdOneAddStep.Text = "(" + addstep.ToString(CultureInfo.InvariantCulture) + ")";
+                    TbFirstdOneAddStep.Text = $"({addstep.ToString(CultureInfo.InvariantCulture)})";
                 }
                 else
                 {
@@ -1006,14 +1007,14 @@
                     if (addstep < 50 || addstep > step)
                     {
                         TbFirstOutputOneMessage.Visibility = Visibility.Visible;
-                        TbFirstOutputOneMessage.Text = ModPlusAPI.Language.GetItem(LangItem, "h49") + " ("
-                            + step + ") " + ModPlusAPI.Language.GetItem(LangItem, "h50");
+                        TbFirstOutputOneMessage.Text =
+                            $"{ModPlusAPI.Language.GetItem(LangItem, "h49")} ({step}) {ModPlusAPI.Language.GetItem(LangItem, "h50")}";
                     }
                     else if (Math.Abs(Math.IEEERemainder(addstep, 10)) > _ep)
                     {
                         TbFirstOutputOneMessage.Visibility = Visibility.Visible;
-                        TbFirstOutputOneMessage.Text = ModPlusAPI.Language.GetItem(LangItem, "h49") + " ("
-                            + step + ") " + ModPlusAPI.Language.GetItem(LangItem, "h50");
+                        TbFirstOutputOneMessage.Text =
+                            $"{ModPlusAPI.Language.GetItem(LangItem, "h49")} ({step}) {ModPlusAPI.Language.GetItem(LangItem, "h50")}";
                     }
                     else
                     {
@@ -1265,8 +1266,7 @@
                     InsertToAutoCad.AddSpecificationItemToTableRow(new InsertToAutoCad.SpecificationItemForTable(
                         string.Empty,
                         "ГОСТ 23279-2012",
-                        "\\A1;" + TbxC.Text + "{\\H1x; \\H0.9x;\\S" + TbFirstd.Text + TbFirstdClass.Text + TbFirstdStep.Text + TbFirstdAddStep.Text +
-                        "/" + TbFirstdOne.Text + TbFirstdOneClass.Text + TbFirstdOneStep.Text + TbFirstdOneAddStep.Text + ";\\H1x; }" + TbFirstb.Text + TbFirstl.Text,
+                        $"\\A1;{TbxC.Text}{{\\H1x; \\H0.9x;\\S{TbFirstd.Text}{TbFirstdClass.Text}{TbFirstdStep.Text}{TbFirstdAddStep.Text}/{TbFirstdOne.Text}{TbFirstdOneClass.Text}{TbFirstdOneStep.Text}{TbFirstdOneAddStep.Text};\\H1x; }}{TbFirstb.Text}{TbFirstl.Text}",
                         TbFirstMassa.Text.Replace(',', '.').Replace('.', char.Parse(Variables.Separator)),
                         string.Empty, string.Empty));
                 }
@@ -1275,13 +1275,7 @@
                     InsertToAutoCad.AddSpecificationItemToTableRow(new InsertToAutoCad.SpecificationItemForTable(
                         string.Empty,
                         "ГОСТ 23279-2012",
-                        "\\A1;" + TbxC.Text +
-                        "{\\H1x; \\H0.9x;\\S" + TbFirstd.Text + TbFirstdClass.Text + TbFirstdStep.Text +
-                        TbFirstdAddStep.Text +
-                        "/" + TbFirstdOne.Text + TbFirstdOneClass.Text + TbFirstdOneStep.Text +
-                        TbFirstdOneAddStep.Text +
-                        ";\\H1x; }" + TbFirstb.Text + TbFirstl.Text + " {\\H0.9x;\\S" +
-                        TbFirstaOne.Text + TbFirstaTwo.Text + "/" + TbFirsta.Text + ";}",
+                        $"\\A1;{TbxC.Text}{{\\H1x; \\H0.9x;\\S{TbFirstd.Text}{TbFirstdClass.Text}{TbFirstdStep.Text}{TbFirstdAddStep.Text}/{TbFirstdOne.Text}{TbFirstdOneClass.Text}{TbFirstdOneStep.Text}{TbFirstdOneAddStep.Text};\\H1x; }}{TbFirstb.Text}{TbFirstl.Text} {{\\H0.9x;\\S{TbFirstaOne.Text}{TbFirstaTwo.Text}/{TbFirsta.Text};}}",
                         TbFirstMassa.Text.Replace(',', '.').Replace('.', char.Parse(Variables.Separator)),
                         string.Empty, string.Empty));
                 }
@@ -1352,8 +1346,7 @@
                         Source =
                             new BitmapImage(
                                 new Uri(
-                                    @"pack://application:,,,/mpMeshes_" + new ModPlusConnector().AvailProductExternalVersion +
-                                    ";component/Resources/" + imagename + ".png", UriKind.Absolute))
+                                    $@"pack://application:,,,/mpMeshes_{new ModPlusConnector().AvailProductExternalVersion};component/Resources/{imagename}.png", UriKind.Absolute))
                     }
                 };
                 imgWin.ShowDialog();
@@ -1497,10 +1490,7 @@
                 InsertToAutoCad.AddSpecificationItemToTableRow(new InsertToAutoCad.SpecificationItemForTable(
                     string.Empty,
                     "ГОСТ 8478-81",
-                    "\\A1;" + TbSecondType.Text +
-                    "{\\H1x; \\H0.9x;\\S" + TbSecondS.Text +
-                    "/" + TbSecondSOne.Text +
-                    ";\\H1x; }" + "2350  L=" + TbSecondMeshLength.Text,
+                    $"\\A1;{TbSecondType.Text}{{\\H1x; \\H0.9x;\\S{TbSecondS.Text}/{TbSecondSOne.Text};\\H1x; }}2350  L={TbSecondMeshLength.Text}",
                     TbSecondMassa.Text.Replace(',', '.').Replace('.', char.Parse(Variables.Separator)),
                     string.Empty, string.Empty));
             }
@@ -1583,8 +1573,7 @@
                         Source =
                             new BitmapImage(
                                 new Uri(
-                                    @"pack://application:,,,/mpMeshes_" + new ModPlusConnector().AvailProductExternalVersion +
-                                    ";component/Resources/" + imagename + ".png", UriKind.Absolute))
+                                    $@"pack://application:,,,/mpMeshes_{new ModPlusConnector().AvailProductExternalVersion};component/Resources/{imagename}.png", UriKind.Absolute))
                     }
                 };
                 imgWin.ShowDialog();
@@ -1717,10 +1706,7 @@
                 InsertToAutoCad.AddSpecificationItemToTableRow(new InsertToAutoCad.SpecificationItemForTable(
                     string.Empty,
                     "Серия 1.410-3 выпуск 1",
-                    "\\A1;" + TbThirdType.Text +
-                    "{\\H1x; \\H0.9x;\\S" + TbThirdLongDiam.Text +
-                    "/" + TbThirdTransDiam.Text +
-                    ";\\H1x; }" + TbThirdLength.Text + "x" + TbThirdWidth.Text,
+                    $"\\A1;{TbThirdType.Text}{{\\H1x; \\H0.9x;\\S{TbThirdLongDiam.Text}/{TbThirdTransDiam.Text};\\H1x; }}{TbThirdLength.Text}x{TbThirdWidth.Text}",
                     TbThirdMassa.Text.Replace(',', '.').Replace('.', char.Parse(Variables.Separator)),
                     string.Empty, string.Empty));
             }
@@ -2006,8 +1992,8 @@
             }
 
             string ratio = e.AddedItems[0].ToString();
-            TbThirdLongDiam.Text = ratio.Split('/').GetValue(0) + "AIII";
-            TbThirdTransDiam.Text = ratio.Split('/').GetValue(1) + "AIII";
+            TbThirdLongDiam.Text = $"{ratio.Split('/').GetValue(0)}AIII";
+            TbThirdTransDiam.Text = $"{ratio.Split('/').GetValue(1)}AIII";
 
             // Масса
             ThirdMassa();
@@ -2051,8 +2037,7 @@
                         Source =
                             new BitmapImage(
                                 new Uri(
-                                    @"pack://application:,,,/mpMeshes_" + new ModPlusConnector().AvailProductExternalVersion +
-                                    ";component/Resources/" + imagename + ".png", UriKind.Absolute))
+                                    $@"pack://application:,,,/mpMeshes_{new ModPlusConnector().AvailProductExternalVersion};component/Resources/{imagename}.png", UriKind.Absolute))
                     }
                 };
                 imgWin.ShowDialog();

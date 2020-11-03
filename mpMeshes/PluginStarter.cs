@@ -7,9 +7,9 @@
     using ModPlusAPI;
 
     /// <summary>
-    /// Запуск функции
+    /// Запуск плагина
     /// </summary>
-    public class MpMeshesFunc
+    public class PluginStarter
     {
         private MpMeshes _window;
 
